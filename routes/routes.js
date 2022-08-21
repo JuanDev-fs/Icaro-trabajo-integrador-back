@@ -6,26 +6,14 @@ const usersController = require('../controllers/usersController')
 const messagesController = require('../controllers/messagesController')
 const authController = require('../controllers/authController')
 
-
-
-
-//username and password para test
-const myusername = 'user1'
-const mypassword = 'mypassword'
-
-// a variable to save a session
-var session;
-
 //LOGIN
-
-//router.get('/login',usersController.logged)
 router.post('/api/login', usersController.login)
 
 //TRAER TODOS LOS USUARIOS EXISTENTES
 router.get('/api/users', authController.ensureToken, authController.verification, usersController.findAll)
 
 //CREAR USUARIO
-//router.post('/api/users',usersController.create)
+//Antes de crear usuario valida las entradas del body con express validator
 router.post('/api/users',
     body('username', 'ingrese un nombre de usuario valido').isLength({ min: 5 }),
     body('firstName', 'ingrese un nombre valido').isLength({ min: 3 }).isAlpha('en-US', { ignore: [' ', 'ñ', 'Ñ', 'á', 'é', 'í', 'ó', 'ú', 'Á', 'É', 'Í', 'Ó', 'Ú', 'ã', '’', 'ô'] }),
@@ -58,14 +46,10 @@ router.post('/api/users/:username/messages', authController.ensureToken, authCon
 //MODIFICAR ESTADO DE LECTURA DEL MENSAJE
 router.put('/api/users/:username/messages/:id', authController.ensureToken, authController.verification, messagesController.uptdateMessageDb)
 
-router.get('/test/:username', messagesController.testeo)
-
-
-
 
 module.exports = router
 
 
-
+//ensureToken y verification asegura que no se pueda acceder a la ruta si no tiene un token valido.
 
 

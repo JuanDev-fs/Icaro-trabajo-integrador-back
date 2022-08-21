@@ -12,15 +12,14 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
 
-    //modelos definidos jueves 4 de agosto 2022
       models.Message.belongsTo(models.User, {
-        foreignKey:'senderId'
-    })
+        foreignKey: 'senderId'
+      })
 
-    models.Message.belongsTo(models.User, {
-      foreignKey:'receiverId',
-      as:'destinatario'
-  })
+      models.Message.belongsTo(models.User, {
+        foreignKey: 'receiverId',
+        as: 'destinatario'
+      })
     }
   }
   Message.init({
@@ -36,19 +35,3 @@ module.exports = (sequelize, DataTypes) => {
   return Message;
 };
 
-
-
-///test del dia 4 de agosto de 2022, asociaciones
-//001
-/* 
-
-models.Message.belongsTo(models.User, {
-        foreignKey:'senderId'
-    })
-
-    models.Message.belongsTo(models.User, {
-      foreignKey:'receiverId',
-      as:'destinatario'
-  })
-
-*/

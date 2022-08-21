@@ -11,20 +11,17 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-
-
-  //modelos definidos jueves 4 de agosto 2022
       models.User.hasMany(models.Message, {
-        foreignKey:'senderId',
-        as:'mensajeEscrito'
-    })
+        foreignKey: 'senderId',
+        as: 'mensajeEscrito'
+      })
 
-    models.User.hasOne(models.Message, {
-      foreignKey:'receiverId',
-      as:'recibidos'
-  })
-      
-      
+      models.User.hasOne(models.Message, {
+        foreignKey: 'receiverId',
+        as: 'recibidos'
+      })
+
+
     }
   }
   User.init({
@@ -41,19 +38,3 @@ module.exports = (sequelize, DataTypes) => {
   });
   return User;
 };
-
-///test del dia 4 de agosto de 2022, asociaciones
-///001
-/* 
-
-models.User.hasOne(models.Message, {
-        foreignKey:'senderId',
-        as:'mensajeEscrito'
-    })
-
-    models.User.hasOne(models.Message, {
-      foreignKey:'receiverId',
-      as:'recibidos'
-  })
-
-*/
