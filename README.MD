@@ -33,7 +33,6 @@ __Send a message to N users__
 
 __Change message reading state__
 `POST` `'/api/users/:username/messages/:id'`
----
 
 
 ### Login
